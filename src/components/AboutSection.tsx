@@ -73,7 +73,19 @@ export default function AboutSection() {
             <div key={i} className={`about__feature-card reveal reveal-delay-${i + 2}`}>
               <div className="about__feature-gradient" />
 
-              <div className={`about__feature-icon-large ${f.iconClass}`}>{f.icon}</div>
+              <div className={`about__feature-icon-large ${f.iconClass}`}>
+                {f.iconClass === 'hospital-icon' ? (
+                  <div className="hospital-custom">
+                    <div className="hospital-building"></div>
+                    <div className="hospital-cross">
+                      <div className="cross-vertical"></div>
+                      <div className="cross-horizontal"></div>
+                    </div>
+                  </div>
+                ) : (
+                  f.icon
+                )}
+              </div>
 
               <div className="about__feature-stat-box">
                 <div className="about__feature-stat-main">
