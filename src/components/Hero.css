@@ -4,9 +4,22 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
-  padding: calc(var(--header-height) + var(--spacing-md)) var(--spacing-md) var(--spacing-xl);
-  background: linear-gradient(135deg, #0a1628 0%, #1a0a28 50%, #280a1a 100%);
+  overflow: visible;
+  padding: calc(var(--header-height) + var(--spacing-md)) var(--spacing-md) var(--spacing-3xl);
+  background: linear-gradient(135deg, #001a3d 0%, #1a0a20 35%, #2d0a15 70%, #1a0a20 100%);
+}
+
+/* Gradient fade at bottom */
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 150px;
+  background: linear-gradient(to bottom, transparent 0%, var(--color-bg-primary) 100%);
+  pointer-events: none;
+  z-index: 3;
 }
 
 .hero__canvas {
@@ -40,7 +53,7 @@
   line-height: 1.2;
   letter-spacing: var(--ls-heading);
   margin-bottom: var(--spacing-sm);
-  background: linear-gradient(135deg, #4A90E2 0%, #E24A90 50%, #4AE290 100%);
+  background: linear-gradient(135deg, #003B7F 0%, #C41E3A 50%, #FFC72C 100%);
   background-size: 200% 200%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -53,7 +66,7 @@
   color: rgba(255, 255, 255, 0.9);
   font-weight: var(--fw-semibold);
   margin-bottom: var(--spacing-xs);
-  text-shadow: 0 2px 10px rgba(74, 144, 226, 0.3);
+  text-shadow: 0 2px 10px rgba(0, 59, 127, 0.4);
   animation: heroSlideUp 0.8s ease-out 0.1s backwards;
 }
 
@@ -94,7 +107,7 @@
   width: 100%;
   height: 100%;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(74, 144, 226, 0.4) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(0, 59, 127, 0.5) 0%, transparent 70%);
   animation: hubPulse 3s ease-in-out infinite;
 }
 
@@ -106,10 +119,13 @@
   width: 100%;
   height: 100%;
   border-radius: 50%;
-  border: 3px solid rgba(74, 144, 226, 0.6);
+  border: 3px solid transparent;
+  background:
+    linear-gradient(rgba(10, 22, 40, 0.9), rgba(10, 22, 40, 0.9)) padding-box,
+    linear-gradient(135deg, #003B7F 0%, #C41E3A 50%, #FFC72C 100%) border-box;
   box-shadow:
-    0 0 20px rgba(74, 144, 226, 0.5),
-    inset 0 0 20px rgba(226, 74, 144, 0.3);
+    0 0 25px rgba(0, 59, 127, 0.6),
+    inset 0 0 20px rgba(196, 30, 58, 0.3);
   animation: hubRotate 20s linear infinite;
 }
 
@@ -120,57 +136,58 @@
   transform: translate(-50%, -50%);
   width: 80px;
   height: 80px;
-  background: radial-gradient(circle, rgba(10, 22, 40, 0.95) 0%, rgba(26, 10, 40, 0.9) 100%);
+  background: radial-gradient(circle, rgba(10, 22, 40, 0.95) 0%, rgba(0, 20, 45, 0.9) 100%);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 2px solid rgba(74, 144, 226, 0.8);
-  box-shadow: 0 0 30px rgba(74, 144, 226, 0.6);
+  border: 2px solid rgba(0, 59, 127, 0.9);
+  box-shadow: 0 0 35px rgba(255, 199, 44, 0.5);
 }
 
-.medical-cross {
+/* BRB Logo */
+.brb-logo {
   position: relative;
-  width: 40px;
-  height: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
 }
 
-.cross-v,
-.cross-h {
-  position: absolute;
-  background: linear-gradient(135deg, #4A90E2 0%, #E24A90 100%);
-  box-shadow: 0 0 15px rgba(74, 144, 226, 0.8);
-}
-
-.cross-v {
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 8px;
-  height: 40px;
-  border-radius: 4px;
-}
-
-.cross-h {
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 40px;
-  height: 8px;
-  border-radius: 4px;
-}
-
-.hero__hub-label {
-  position: absolute;
-  bottom: -30px;
-  left: 50%;
-  transform: translateX(-50%);
+.brb-logo-text {
   font-family: var(--font-family-en);
-  font-size: 18px;
+  font-size: 32px;
   font-weight: var(--fw-bold);
-  color: rgba(74, 144, 226, 0.9);
-  letter-spacing: 4px;
-  text-shadow: 0 2px 10px rgba(74, 144, 226, 0.5);
+  font-style: italic;
+  background: linear-gradient(135deg, #003B7F 0%, #C41E3A 50%, #FFC72C 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: 2px;
+  text-shadow:
+    0 0 20px rgba(255, 199, 44, 0.6),
+    0 2px 4px rgba(0, 0, 0, 0.3);
+  filter: drop-shadow(0 2px 8px rgba(255, 199, 44, 0.4));
+}
+
+.brb-logo-underline {
+  width: 90%;
+  height: 3px;
+  background: linear-gradient(90deg, #003B7F 0%, #C41E3A 50%, #FFC72C 100%);
+  border-radius: 2px;
+  box-shadow: 0 0 10px rgba(255, 199, 44, 0.8);
+  animation: underlinePulse 2s ease-in-out infinite;
+}
+
+@keyframes underlinePulse {
+  0%, 100% {
+    opacity: 0.8;
+    transform: scaleX(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scaleX(1.1);
+  }
 }
 
 /* Connection Lines SVG */
@@ -212,15 +229,16 @@
   top: 50%;
   left: 50%;
   width: 200px;
-  background: rgba(10, 22, 40, 0.85);
+  background: rgba(10, 22, 40, 0.90);
   backdrop-filter: blur(15px);
-  border: 2px solid rgba(74, 144, 226, 0.4);
+  border: 2px solid rgba(0, 59, 127, 0.5);
   border-radius: var(--border-radius-lg);
   padding: var(--spacing-lg) var(--spacing-md);
   cursor: pointer;
   transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   animation: nodeAppear 0.6s ease-out backwards;
   z-index: 5;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
   transform:
     translate(-50%, -50%)
     translate(
@@ -339,8 +357,8 @@
 .hero__scroll-chevron {
   width: 24px;
   height: 24px;
-  border-right: 2px solid rgba(74, 144, 226, 0.8);
-  border-bottom: 2px solid rgba(74, 144, 226, 0.8);
+  border-right: 2px solid rgba(255, 199, 44, 0.9);
+  border-bottom: 2px solid rgba(255, 199, 44, 0.9);
   transform: rotate(45deg);
 }
 
@@ -471,19 +489,12 @@
     height: 70px;
   }
 
-  .medical-cross {
-    width: 35px;
-    height: 35px;
+  .brb-logo-text {
+    font-size: 28px;
   }
 
-  .cross-v {
-    width: 7px;
-    height: 35px;
-  }
-
-  .cross-h {
-    width: 35px;
-    height: 7px;
+  .brb-logo-underline {
+    height: 2.5px;
   }
 
   .hero__node {
@@ -527,19 +538,12 @@
     height: 60px;
   }
 
-  .medical-cross {
-    width: 30px;
-    height: 30px;
+  .brb-logo-text {
+    font-size: 24px;
   }
 
-  .cross-v {
-    width: 6px;
-    height: 30px;
-  }
-
-  .cross-h {
-    width: 30px;
-    height: 6px;
+  .brb-logo-underline {
+    height: 2px;
   }
 
   .hero__node {
@@ -585,24 +589,12 @@
     height: 50px;
   }
 
-  .medical-cross {
-    width: 24px;
-    height: 24px;
+  .brb-logo-text {
+    font-size: 20px;
   }
 
-  .cross-v {
-    width: 5px;
-    height: 24px;
-  }
-
-  .cross-h {
-    width: 24px;
-    height: 5px;
-  }
-
-  .hero__hub-label {
-    font-size: 14px;
-    bottom: -24px;
+  .brb-logo-underline {
+    height: 2px;
   }
 
   .hero__node {
@@ -655,24 +647,13 @@
     height: 45px;
   }
 
-  .medical-cross {
-    width: 20px;
-    height: 20px;
+  .brb-logo-text {
+    font-size: 18px;
+    letter-spacing: 1px;
   }
 
-  .cross-v {
-    width: 4px;
-    height: 20px;
-  }
-
-  .cross-h {
-    width: 20px;
-    height: 4px;
-  }
-
-  .hero__hub-label {
-    font-size: 12px;
-    letter-spacing: 2px;
+  .brb-logo-underline {
+    height: 1.5px;
   }
 
   .hero__node {

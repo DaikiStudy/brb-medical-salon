@@ -11,7 +11,7 @@ const NAV_ITEMS = [
     title: 'BRBメディカルサロンとは',
     description: '会員制医療クラブの特徴と理念',
     icon: '🏛️',
-    color: '#4A90E2',
+    color: '#003B7F', // Keio Navy Blue
     angle: 0,
     scrollTo: 'about',
   },
@@ -20,7 +20,7 @@ const NAV_ITEMS = [
     title: 'サービス内容',
     description: '経営者様向けの専門医療サービス',
     icon: '💼',
-    color: '#E24A90',
+    color: '#C41E3A', // Keio Red
     angle: 60,
     page: 'service',
   },
@@ -29,7 +29,7 @@ const NAV_ITEMS = [
     title: '顧問Dr.',
     description: '各分野の専門医師陣のご紹介',
     icon: '👨‍⚕️',
-    color: '#90E24A',
+    color: '#FFC72C', // Keio Yellow/Gold
     angle: 120,
     page: 'doctors',
   },
@@ -38,7 +38,7 @@ const NAV_ITEMS = [
     title: '提携健診施設',
     description: '全国200箇所以上の医療ネットワーク',
     icon: '🏥',
-    color: '#E2904A',
+    color: '#0055A4', // Lighter Keio Blue
     angle: 180,
     page: 'facilities',
   },
@@ -47,7 +47,7 @@ const NAV_ITEMS = [
     title: 'プラン・料金',
     description: '会員プランと料金体系のご案内',
     icon: '💳',
-    color: '#9C27B0',
+    color: '#E63946', // Lighter Keio Red
     angle: 240,
     page: 'plan',
   },
@@ -56,7 +56,7 @@ const NAV_ITEMS = [
     title: 'お問い合わせ',
     description: '資料請求・ご相談はこちら',
     icon: '📧',
-    color: '#F44336',
+    color: '#FFD700', // Brighter Gold
     angle: 300,
     page: 'contact',
   },
@@ -92,18 +92,19 @@ export default function Hero({ onNavigate }: HeroProps) {
         vx: (Math.random() - 0.5) * 0.5,
         vy: (Math.random() - 0.5) * 0.5,
         o: Math.random() * 0.5 + 0.3,
-        hue: Math.random() * 60 + (Math.random() > 0.5 ? 200 : 340), // Blue or Red hues
+        hue: Math.random() > 0.66 ? 215 : (Math.random() > 0.5 ? 350 : 45), // Keio Blue, Red, or Gold hues
       })
     }
 
     const draw = () => {
       timeRef.current += 0.01
 
-      // Gradient background waves
+      // Keio tri-color gradient background waves
       const gradient = ctx.createLinearGradient(0, 0, w, h)
-      gradient.addColorStop(0, `hsla(${220 + Math.sin(timeRef.current) * 20}, 70%, 30%, 0.3)`)
-      gradient.addColorStop(0.5, `hsla(${280 + Math.cos(timeRef.current * 0.7) * 30}, 60%, 25%, 0.4)`)
-      gradient.addColorStop(1, `hsla(${340 + Math.sin(timeRef.current * 0.5) * 20}, 65%, 30%, 0.3)`)
+      // Navy Blue -> Red -> Gold gradient
+      gradient.addColorStop(0, `rgba(0, 59, 127, ${0.3 + Math.sin(timeRef.current) * 0.1})`)
+      gradient.addColorStop(0.5, `rgba(196, 30, 58, ${0.35 + Math.cos(timeRef.current * 0.7) * 0.1})`)
+      gradient.addColorStop(1, `rgba(255, 199, 44, ${0.2 + Math.sin(timeRef.current * 0.5) * 0.08})`)
 
       ctx.fillStyle = gradient
       ctx.fillRect(0, 0, w, h)
@@ -118,7 +119,8 @@ export default function Hero({ onNavigate }: HeroProps) {
           if (x === 0) ctx.moveTo(x, y)
           else ctx.lineTo(x, y)
         }
-        ctx.strokeStyle = `hsla(${200 + wave * 40}, 70%, 60%, ${0.1 - wave * 0.02})`
+        const waveHue = wave === 0 ? 215 : (wave === 1 ? 350 : 45) // Blue, Red, Gold
+        ctx.strokeStyle = `hsla(${waveHue}, 70%, 60%, ${0.12 - wave * 0.02})`
         ctx.lineWidth = 2
         ctx.stroke()
       }
@@ -201,12 +203,11 @@ export default function Hero({ onNavigate }: HeroProps) {
             <div className="hero__hub-pulse" />
             <div className="hero__hub-ring" />
             <div className="hero__hub-icon">
-              <div className="medical-cross">
-                <div className="cross-v"></div>
-                <div className="cross-h"></div>
+              <div className="brb-logo">
+                <span className="brb-logo-text">BRB</span>
+                <div className="brb-logo-underline"></div>
               </div>
             </div>
-            <div className="hero__hub-label">BRB</div>
           </div>
 
           {/* Connection Lines */}
