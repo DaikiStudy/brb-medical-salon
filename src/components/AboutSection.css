@@ -52,17 +52,6 @@
   opacity: 1;
 }
 
-/* Number Badge */
-.about__feature-number {
-  position: absolute;
-  top: var(--spacing-md);
-  right: var(--spacing-md);
-  font-family: var(--font-family-en);
-  font-size: 48px;
-  font-weight: var(--fw-bold);
-  color: rgba(201, 168, 76, 0.08);
-  line-height: 1;
-}
 
 /* Large Icon */
 .about__feature-icon-large {
@@ -209,11 +198,6 @@
   }
   .about__feature-card {
     padding: var(--spacing-lg) var(--spacing-md);
-  }
-  .about__feature-number {
-    font-size: 36px;
-    top: var(--spacing-sm);
-    right: var(--spacing-sm);
   }
   .about__feature-icon-large {
     font-size: 60px;

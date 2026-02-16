@@ -3,14 +3,13 @@ import './AboutSection.css'
 
 const FEATURES = [
   {
-    number: '01',
     title: '信頼の医療ネットワーク',
     subtitle: '全国の有名大学病院・専門施設と提携',
     mainStat: '200',
     statUnit: '箇所以上',
     statDescription: '提携医療機関数',
     icon: '🏥',
-    description: '慶應義塾大学、国立がんセンターなど、国内トップクラスの医療機関と提携。最新の医療機器による精密な検査を受けられます。',
+    description: '大学病院や専門施設など、確かな診断力を誇る国内有数の健診施設と提携。慶應義塾大学、国立がんセンターなど、最新の医療機器による精密な検査を受けられます。',
     features: [
       '大学病院や国立病院と連携',
       '全国主要都市に提携施設',
@@ -19,30 +18,28 @@ const FEATURES = [
     ],
   },
   {
-    number: '02',
     title: '専属担当看護師制度',
     subtitle: 'お一人に一人の看護師が担当',
     mainStat: '担当制',
     statUnit: '',
     statDescription: '専属看護師がサポート',
-    icon: '👩‍⚕️',
-    description: '経験豊富な看護師が会員様お一人おひとりを専属で担当。健康状態を継続的に把握し、きめ細かくサポートいたします。',
+    icon: '🩺',
+    description: '経験豊富な看護師が会員様お一人おひとりを専属で担当。状況に応じた適切なアドバイスやフォローアップ、再検査の予約手配などをサポートいたします。',
     features: [
       '専属看護師が常に対応',
       '健康状態を継続管理',
-      '医師との連携をサポート',
+      '再検査の予約手配',
       '気軽に相談できる関係',
     ],
   },
   {
-    number: '03',
     title: '24時間365日対応',
     subtitle: 'いつでもどこでも安心サポート',
     mainStat: '年中',
     statUnit: '無休',
     statDescription: '24時間いつでも対応',
     icon: '📞',
-    description: '夜間・休日・海外滞在中も、24時間365日いつでも健康相談が可能。緊急時には医療機関の手配も迅速に対応いたします。',
+    description: '24時間電話健康相談を365日の相談体制で承っております。夜間・休日・海外滞在中も、いつでも健康相談が可能。緊急時には医療機関の手配も迅速に対応いたします。',
     features: [
       '24時間電話相談受付',
       '夜間・休日も対応',
@@ -64,15 +61,14 @@ export default function AboutSection() {
           <div className="divider" />
         </div>
         <p className="about__desc reveal reveal-delay-1">
-          BRBメディカルサロンは、経営者・エグゼクティブの皆様のための会員制医療クラブです。<br />
-          医学界の権威である顧問Dr.による個別カウンセリング、最新の医療機器による精密健診、
-          24時間健康相談など、最高水準の医療サービスをご提供いたします。
+          最良の予防医療と健康リスクの解決法をご提案する会員制医療クラブです。<br />
+          個別カウンセリングや精密な人間ドックを通じて会員様お一人おひとりの徹底したデータ管理を行い、<br />
+          会員様に最適な健診・治療・医療機関をご案内できる幅広いネットワークを構築しています。
         </p>
         <div className="about__grid">
           {FEATURES.map((f, i) => (
             <div key={i} className={`about__feature-card reveal reveal-delay-${i + 2}`}>
               <div className="about__feature-gradient" />
-              <div className="about__feature-number">{f.number}</div>
 
               <div className="about__feature-icon-large">{f.icon}</div>
 
