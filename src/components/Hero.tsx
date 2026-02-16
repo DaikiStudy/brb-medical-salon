@@ -198,7 +198,14 @@ export default function Hero({ onNavigate }: HeroProps) {
 
         <nav className="hero__nav-network" aria-label="サイトナビゲーション">
           {/* Central Hub */}
-          <div className="hero__hub">
+          <button
+            className="hero__hub"
+            onClick={() => {
+              const aboutSection = document.getElementById('about')
+              aboutSection?.scrollIntoView({ behavior: 'smooth' })
+            }}
+            aria-label="BRBメディカルサロンとはへ移動"
+          >
             <div className="hero__hub-pulse" />
             <div className="hero__hub-ring" />
             <div className="hero__hub-icon">
@@ -207,7 +214,7 @@ export default function Hero({ onNavigate }: HeroProps) {
                 <div className="brb-logo-underline"></div>
               </div>
             </div>
-          </div>
+          </button>
 
           {/* Connection Lines */}
           <svg className="hero__connections" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet" aria-hidden="true">

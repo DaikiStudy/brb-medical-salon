@@ -97,6 +97,19 @@
   height: 140px;
   z-index: 10;
   animation: hubAppear 1s ease-out 0.3s backwards;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: transform 0.3s ease;
+}
+
+.hero__hub:hover {
+  transform: translate(-50%, -50%) scale(1.05);
+}
+
+.hero__hub:active {
+  transform: translate(-50%, -50%) scale(0.98);
 }
 
 .hero__hub-pulse {
@@ -155,43 +168,63 @@
 }
 
 .brb-logo-text {
-  font-family: var(--font-family-en);
-  font-size: 32px;
-  font-weight: var(--fw-bold);
+  font-family: 'Brush Script MT', 'Lucida Handwriting', cursive, var(--font-family-en);
+  font-size: 38px;
+  font-weight: 500;
   font-style: italic;
   background: linear-gradient(135deg, #1E5AAF 0%, #E8405F 50%, #1E5AAF 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  letter-spacing: 2px;
+  letter-spacing: 4px;
   position: relative;
-  filter: drop-shadow(0 2px 8px rgba(30, 90, 175, 0.5));
+  filter: drop-shadow(0 3px 12px rgba(30, 90, 175, 0.6));
+  transform: rotate(-3deg);
+  line-height: 1;
+}
+
+/* Handwritten style flourish */
+.brb-logo-text::after {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  left: -5px;
+  right: -5px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent 0%, #1E5AAF 20%, #E8405F 50%, #1E5AAF 80%, transparent 100%);
+  transform: skewY(-2deg);
+  opacity: 0.8;
 }
 
 /* Gold X accent on BRB logo */
 .brb-logo-text::before {
   content: '×';
   position: absolute;
-  top: -8px;
-  right: -12px;
-  font-size: 20px;
+  top: -10px;
+  right: -15px;
+  font-size: 22px;
+  font-family: var(--font-family-en);
+  font-style: normal;
   color: #FFD700;
-  text-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
+  text-shadow: 0 0 12px rgba(255, 215, 0, 0.9);
   animation: xPulse 3s ease-in-out infinite;
+  transform: rotate(8deg);
 }
 
 @keyframes xPulse {
-  0%, 100% { opacity: 0.7; transform: scale(1); }
-  50% { opacity: 1; transform: scale(1.1); }
+  0%, 100% { opacity: 0.7; transform: rotate(8deg) scale(1); }
+  50% { opacity: 1; transform: rotate(8deg) scale(1.15); }
 }
 
 .brb-logo-underline {
-  width: 90%;
-  height: 3px;
-  background: linear-gradient(90deg, #1E5AAF 0%, #E8405F 50%, #1E5AAF 100%);
-  border-radius: 2px;
-  box-shadow: 0 0 10px rgba(232, 64, 95, 0.6);
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent 0%, #1E5AAF 20%, #E8405F 50%, #1E5AAF 80%, transparent 100%);
+  border-radius: 1px;
+  box-shadow: 0 0 8px rgba(232, 64, 95, 0.5);
   animation: underlinePulse 2s ease-in-out infinite;
+  transform: rotate(-1deg);
+  margin-top: 8px;
 }
 
 @keyframes underlinePulse {
@@ -509,11 +542,19 @@
   }
 
   .brb-logo-text {
-    font-size: 28px;
+    font-size: 32px;
+    letter-spacing: 3px;
+  }
+
+  .brb-logo-text::before {
+    font-size: 20px;
+    top: -9px;
+    right: -13px;
   }
 
   .brb-logo-underline {
-    height: 2.5px;
+    height: 2px;
+    margin-top: 7px;
   }
 
   .hero__node {
@@ -558,11 +599,19 @@
   }
 
   .brb-logo-text {
-    font-size: 24px;
+    font-size: 28px;
+    letter-spacing: 3px;
+  }
+
+  .brb-logo-text::before {
+    font-size: 18px;
+    top: -8px;
+    right: -12px;
   }
 
   .brb-logo-underline {
-    height: 2px;
+    height: 1.5px;
+    margin-top: 6px;
   }
 
   .hero__node {
@@ -609,11 +658,19 @@
   }
 
   .brb-logo-text {
-    font-size: 20px;
+    font-size: 22px;
+    letter-spacing: 2px;
+  }
+
+  .brb-logo-text::before {
+    font-size: 16px;
+    top: -7px;
+    right: -10px;
   }
 
   .brb-logo-underline {
-    height: 2px;
+    height: 1.5px;
+    margin-top: 5px;
   }
 
   .hero__node {
@@ -667,12 +724,19 @@
   }
 
   .brb-logo-text {
-    font-size: 18px;
-    letter-spacing: 1px;
+    font-size: 20px;
+    letter-spacing: 2px;
+  }
+
+  .brb-logo-text::before {
+    font-size: 14px;
+    top: -6px;
+    right: -9px;
   }
 
   .brb-logo-underline {
-    height: 1.5px;
+    height: 1px;
+    margin-top: 4px;
   }
 
   .hero__node {
