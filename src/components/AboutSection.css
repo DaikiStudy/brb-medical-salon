@@ -68,6 +68,16 @@
   filter: drop-shadow(0 8px 20px rgba(201, 168, 76, 0.5));
 }
 
+/* Red Cross Icon */
+.about__feature-icon-large.red-cross {
+  color: #dc143c;
+  filter: drop-shadow(0 4px 12px rgba(220, 20, 60, 0.4));
+}
+
+.about__feature-card:hover .about__feature-icon-large.red-cross {
+  filter: drop-shadow(0 8px 20px rgba(220, 20, 60, 0.6));
+}
+
 /* Statistics Box */
 .about__feature-stat-box {
   background: linear-gradient(135deg, rgba(201, 168, 76, 0.15), rgba(201, 168, 76, 0.05));

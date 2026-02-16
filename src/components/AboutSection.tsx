@@ -8,7 +8,8 @@ const FEATURES = [
     mainStat: '200',
     statUnit: '箇所以上',
     statDescription: '提携医療機関数',
-    icon: '⚕️',
+    icon: '✚',
+    iconClass: 'red-cross',
     description: '大学病院や専門施設など、確かな診断力を誇る国内有数の健診施設と提携。慶應義塾大学、国立がんセンターなど、最新の医療機器による精密な検査を受けられます。',
     features: [
       '大学病院や国立病院と連携',
@@ -24,6 +25,7 @@ const FEATURES = [
     statUnit: '',
     statDescription: '専属看護師がサポート',
     icon: '🩺',
+    iconClass: '',
     description: '経験豊富な看護師が会員様お一人おひとりを専属で担当。状況に応じた適切なアドバイスやフォローアップ、再検査の予約手配などをサポートいたします。',
     features: [
       '専属看護師が常に対応',
@@ -39,6 +41,7 @@ const FEATURES = [
     statUnit: '無休',
     statDescription: '24時間いつでも対応',
     icon: '☎️',
+    iconClass: '',
     description: '24時間電話健康相談を365日の相談体制で承っております。夜間・休日・海外滞在中も、いつでも健康相談が可能。緊急時には医療機関の手配も迅速に対応いたします。',
     features: [
       '24時間電話相談受付',
@@ -70,7 +73,7 @@ export default function AboutSection() {
             <div key={i} className={`about__feature-card reveal reveal-delay-${i + 2}`}>
               <div className="about__feature-gradient" />
 
-              <div className="about__feature-icon-large">{f.icon}</div>
+              <div className={`about__feature-icon-large ${f.iconClass}`}>{f.icon}</div>
 
               <div className="about__feature-stat-box">
                 <div className="about__feature-stat-main">
