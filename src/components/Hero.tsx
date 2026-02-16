@@ -1,26 +1,64 @@
-import { useState, useEffect, useRef, useCallback } from 'react'
+import { useEffect, useRef, useCallback } from 'react'
 import './Hero.css'
 
 interface HeroProps {
   onNavigate: (page: string) => void
 }
 
-const SLIDES = [
-  { title: '経営者のための\n会員制医療クラブ', subtitle: 'あなたの健康を、最高峰の医療チームが見守ります' },
-  { title: '医学界の権威による\n個別カウンセリング', subtitle: '最適な健診・治療プランをご提案' },
-  { title: '24時間365日の\n健康サポート', subtitle: 'いつでも安心のトータルヘルスケア' },
+const NAV_ITEMS = [
+  {
+    id: 'about',
+    title: 'BRBメディカルサロンとは',
+    description: '会員制医療クラブの特徴と理念',
+    icon: '🏛️',
+    color: 'rgba(201, 168, 76, 0.15)',
+    scrollTo: 'about',
+  },
+  {
+    id: 'service',
+    title: 'サービス内容',
+    description: '経営者様向けの専門医療サービス',
+    icon: '💼',
+    color: 'rgba(100, 150, 220, 0.15)',
+    page: 'service',
+  },
+  {
+    id: 'doctors',
+    title: '顧問Dr.',
+    description: '各分野の専門医師陣のご紹介',
+    icon: '👨‍⚕️',
+    color: 'rgba(76, 175, 80, 0.15)',
+    page: 'doctors',
+  },
+  {
+    id: 'facilities',
+    title: '提携健診施設',
+    description: '全国200箇所以上の医療ネットワーク',
+    icon: '🏥',
+    color: 'rgba(255, 152, 0, 0.15)',
+    page: 'facilities',
+  },
+  {
+    id: 'plan',
+    title: 'プラン・料金',
+    description: '会員プランと料金体系のご案内',
+    icon: '💳',
+    color: 'rgba(156, 39, 176, 0.15)',
+    page: 'plan',
+  },
+  {
+    id: 'contact',
+    title: 'お問い合わせ',
+    description: '資料請求・ご相談はこちら',
+    icon: '📧',
+    color: 'rgba(244, 67, 54, 0.15)',
+    page: 'contact',
+  },
 ]
 
 export default function Hero({ onNavigate }: HeroProps) {
-  const [current, setCurrent] = useState(0)
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const animRef = useRef<number>(0)
-
-  // Auto-rotate slides
-  useEffect(() => {
-    const timer = setInterval(() => setCurrent(c => (c + 1) % SLIDES.length), 5000)
-    return () => clearInterval(timer)
-  }, [])
 
   // Particle animation
   const initParticles = useCallback(() => {
@@ -36,14 +74,14 @@ export default function Hero({ onNavigate }: HeroProps) {
     let h = canvas.height = canvas.offsetHeight
 
     const particles: { x: number; y: number; r: number; vx: number; vy: number; o: number }[] = []
-    const count = Math.min(60, Math.floor((w * h) / 15000))
+    const count = Math.min(80, Math.floor((w * h) / 12000))
     for (let i = 0; i < count; i++) {
       particles.push({
         x: Math.random() * w, y: Math.random() * h,
-        r: Math.random() * 2 + 0.5,
-        vx: (Math.random() - 0.5) * 0.3,
-        vy: (Math.random() - 0.5) * 0.3,
-        o: Math.random() * 0.5 + 0.2,
+        r: Math.random() * 2.5 + 0.5,
+        vx: (Math.random() - 0.5) * 0.4,
+        vy: (Math.random() - 0.5) * 0.4,
+        o: Math.random() * 0.6 + 0.2,
       })
     }
 
@@ -64,12 +102,12 @@ export default function Hero({ onNavigate }: HeroProps) {
           const dx = particles[i].x - particles[j].x
           const dy = particles[i].y - particles[j].y
           const dist = Math.sqrt(dx * dx + dy * dy)
-          if (dist < 150) {
+          if (dist < 180) {
             ctx.beginPath()
             ctx.moveTo(particles[i].x, particles[i].y)
             ctx.lineTo(particles[j].x, particles[j].y)
-            ctx.strokeStyle = `rgba(201, 168, 76, ${0.08 * (1 - dist / 150)})`
-            ctx.lineWidth = 0.5
+            ctx.strokeStyle = `rgba(201, 168, 76, ${0.1 * (1 - dist / 180)})`
+            ctx.lineWidth = 1
             ctx.stroke()
           }
         }
@@ -92,37 +130,47 @@ export default function Hero({ onNavigate }: HeroProps) {
     return () => cleanup?.()
   }, [initParticles])
 
+  const handleNavClick = (item: typeof NAV_ITEMS[0]) => {
+    if (item.page) {
+      onNavigate(item.page)
+    } else if (item.scrollTo) {
+      const element = document.getElementById(item.scrollTo)
+      element?.scrollIntoView({ behavior: 'smooth' })
+    }
+  }
+
   return (
     <section className="hero" aria-label="メインビジュアル">
       <canvas ref={canvasRef} className="hero__canvas" aria-hidden="true" />
       <div className="hero__overlay" />
       <div className="hero__content">
-        <div style={{ position: 'relative', minHeight: 200 }}>
-          {SLIDES.map((slide, i) => (
-            <div key={i} className={`hero__slide ${i === current ? 'hero__slide--active' : ''}`}
-              aria-hidden={i !== current}>
-              <h1 className="hero__title">{slide.title.split('\n').map((line, j) => (
-                <span key={j}>{line}{j === 0 && <br />}</span>
-              ))}</h1>
-              <p className="hero__subtitle">{slide.subtitle}</p>
-            </div>
-          ))}
+        <div className="hero__header">
+          <h1 className="hero__title">BRBメディカルサロン</h1>
+          <p className="hero__subtitle">経営者のための会員制医療クラブ</p>
+          <p className="hero__tagline">あなたの健康を、最高峰の医療チームが見守ります</p>
         </div>
-        <div className="hero__actions">
-          <button className="btn btn-primary" onClick={() => onNavigate('service')}>
-            サービスを見る
-          </button>
-          <button className="btn btn-outline" onClick={() => onNavigate('contact')}>
-            資料請求
-          </button>
-        </div>
-        <div className="hero__dots" role="tablist" aria-label="スライド切替">
-          {SLIDES.map((_, i) => (
-            <button key={i} className={`hero__dot ${i === current ? 'hero__dot--active' : ''}`}
-              onClick={() => setCurrent(i)}
-              role="tab" aria-selected={i === current} aria-label={`スライド${i + 1}`} />
-          ))}
-        </div>
+
+        <nav className="hero__nav" aria-label="サイトナビゲーション">
+          <div className="hero__nav-grid">
+            {NAV_ITEMS.map((item, i) => (
+              <button
+                key={item.id}
+                className="hero__nav-card"
+                onClick={() => handleNavClick(item)}
+                style={{
+                  animationDelay: `${i * 0.1}s`,
+                  '--card-color': item.color,
+                } as React.CSSProperties}
+              >
+                <div className="hero__nav-card-glow" />
+                <div className="hero__nav-card-icon">{item.icon}</div>
+                <h3 className="hero__nav-card-title">{item.title}</h3>
+                <p className="hero__nav-card-desc">{item.description}</p>
+                <div className="hero__nav-card-arrow">→</div>
+              </button>
+            ))}
+          </div>
+        </nav>
       </div>
       <div className="hero__scroll-hint" aria-hidden="true">
         <span>Scroll</span>
