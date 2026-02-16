@@ -4,87 +4,51 @@ import './AboutSection.css'
 const FEATURES = [
   {
     number: '01',
-    icon: (
-      <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="32" cy="32" r="28" stroke="url(#grad1)" strokeWidth="2" />
-        <path d="M32 12 L32 52 M12 32 L52 32" stroke="url(#grad1)" strokeWidth="3" strokeLinecap="round" />
-        <circle cx="32" cy="32" r="6" fill="url(#grad1)" />
-        <defs>
-          <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#C9A84C" />
-            <stop offset="100%" stopColor="#E8D299" />
-          </linearGradient>
-        </defs>
-      </svg>
-    ),
     title: '信頼の医療ネットワーク',
-    subtitle: 'Trusted Medical Network',
-    description: '国内トップクラスの医療機関と提携',
+    subtitle: '全国の有名大学病院・専門施設と提携',
+    mainStat: '200',
+    statUnit: '箇所以上',
+    statDescription: '提携医療機関数',
+    icon: '🏥',
+    description: '慶應義塾大学、国立がんセンターなど、国内トップクラスの医療機関と提携。最新の医療機器による精密な検査を受けられます。',
     features: [
-      '慶應義塾大学など国内有数の大学病院',
-      '国立がんセンター等の専門施設',
-      '全国200ヶ所以上の提携医療機関',
-      '最新医療機器による精密検査',
+      '大学病院や国立病院と連携',
+      '全国主要都市に提携施設',
+      '最新鋭の医療機器完備',
+      '専門医による精密検査',
     ],
-    stat: '200+',
-    statLabel: '提携施設',
   },
   {
     number: '02',
-    icon: (
-      <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="32" cy="22" r="10" stroke="url(#grad2)" strokeWidth="2" />
-        <path d="M16 52 Q16 36 32 36 Q48 36 48 52" stroke="url(#grad2)" strokeWidth="2" strokeLinecap="round" />
-        <path d="M26 26 L28 28 L32 24" stroke="url(#grad2)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-        <defs>
-          <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#C9A84C" />
-            <stop offset="100%" stopColor="#E8D299" />
-          </linearGradient>
-        </defs>
-      </svg>
-    ),
-    title: '専属担当看護師制',
-    subtitle: 'Dedicated Nurse System',
-    description: 'お一人おひとりに専任看護師が担当',
+    title: '専属担当看護師制度',
+    subtitle: 'お一人に一人の看護師が担当',
+    mainStat: '担当制',
+    statUnit: '',
+    statDescription: '専属看護師がサポート',
+    icon: '👩‍⚕️',
+    description: '経験豊富な看護師が会員様お一人おひとりを専属で担当。健康状態を継続的に把握し、きめ細かくサポートいたします。',
     features: [
-      '経験豊富な看護師が専属でサポート',
-      '健康状態の継続的な管理とフォロー',
-      '医師との橋渡し役として安心',
-      'きめ細かな健康アドバイス',
+      '専属看護師が常に対応',
+      '健康状態を継続管理',
+      '医師との連携をサポート',
+      '気軽に相談できる関係',
     ],
-    stat: '1:1',
-    statLabel: '専属制',
   },
   {
     number: '03',
-    icon: (
-      <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="32" cy="32" r="28" stroke="url(#grad3)" strokeWidth="2" />
-        <circle cx="32" cy="32" r="4" fill="url(#grad3)" />
-        <path d="M32 12 L32 20" stroke="url(#grad3)" strokeWidth="2" strokeLinecap="round" />
-        <path d="M32 44 L32 52" stroke="url(#grad3)" strokeWidth="2" strokeLinecap="round" />
-        <path d="M52 32 L44 32" stroke="url(#grad3)" strokeWidth="2" strokeLinecap="round" />
-        <path d="M20 32 L12 32" stroke="url(#grad3)" strokeWidth="2" strokeLinecap="round" />
-        <defs>
-          <linearGradient id="grad3" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#C9A84C" />
-            <stop offset="100%" stopColor="#E8D299" />
-          </linearGradient>
-        </defs>
-      </svg>
-    ),
     title: '24時間365日対応',
-    subtitle: '24/7 Support',
-    description: 'いつでもどこでも安心のサポート',
+    subtitle: 'いつでもどこでも安心サポート',
+    mainStat: '年中',
+    statUnit: '無休',
+    statDescription: '24時間いつでも対応',
+    icon: '📞',
+    description: '夜間・休日・海外滞在中も、24時間365日いつでも健康相談が可能。緊急時には医療機関の手配も迅速に対応いたします。',
     features: [
-      '24時間健康相談ホットライン',
-      '緊急時の医療機関手配',
-      '夜間・休日も専門スタッフ対応',
-      '海外滞在中もサポート可能',
+      '24時間電話相談受付',
+      '夜間・休日も対応',
+      '緊急時の病院手配',
+      '海外からも相談可能',
     ],
-    stat: '24/7',
-    statLabel: '年中無休',
   },
 ]
 
@@ -109,18 +73,25 @@ export default function AboutSection() {
             <div key={i} className={`about__feature-card reveal reveal-delay-${i + 2}`}>
               <div className="about__feature-gradient" />
               <div className="about__feature-number">{f.number}</div>
-              <div className="about__feature-icon">{f.icon}</div>
-              <div className="about__feature-stat">
-                <span className="about__feature-stat-number">{f.stat}</span>
-                <span className="about__feature-stat-label">{f.statLabel}</span>
+
+              <div className="about__feature-icon-large">{f.icon}</div>
+
+              <div className="about__feature-stat-box">
+                <div className="about__feature-stat-main">
+                  <span className="about__feature-stat-number">{f.mainStat}</span>
+                  {f.statUnit && <span className="about__feature-stat-unit">{f.statUnit}</span>}
+                </div>
+                <p className="about__feature-stat-description">{f.statDescription}</p>
               </div>
+
               <h3 className="about__feature-title">{f.title}</h3>
               <p className="about__feature-subtitle">{f.subtitle}</p>
               <p className="about__feature-description">{f.description}</p>
+
               <ul className="about__feature-list">
                 {f.features.map((feature, j) => (
                   <li key={j} className="about__feature-item">
-                    <span className="about__feature-check">✓</span>
+                    <span className="about__feature-bullet">●</span>
                     {feature}
                   </li>
                 ))}
