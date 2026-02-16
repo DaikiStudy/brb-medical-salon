@@ -1,4 +1,4 @@
-import { useEffect, useRef, useCallback } from 'react'
+import { useState, useEffect, useRef, useCallback } from 'react'
 import './Hero.css'
 
 interface HeroProps {
@@ -11,7 +11,8 @@ const NAV_ITEMS = [
     title: 'BRBメディカルサロンとは',
     description: '会員制医療クラブの特徴と理念',
     icon: '🏛️',
-    color: 'rgba(201, 168, 76, 0.15)',
+    color: '#4A90E2',
+    angle: 0,
     scrollTo: 'about',
   },
   {
@@ -19,7 +20,8 @@ const NAV_ITEMS = [
     title: 'サービス内容',
     description: '経営者様向けの専門医療サービス',
     icon: '💼',
-    color: 'rgba(100, 150, 220, 0.15)',
+    color: '#E24A90',
+    angle: 60,
     page: 'service',
   },
   {
@@ -27,7 +29,8 @@ const NAV_ITEMS = [
     title: '顧問Dr.',
     description: '各分野の専門医師陣のご紹介',
     icon: '👨‍⚕️',
-    color: 'rgba(76, 175, 80, 0.15)',
+    color: '#90E24A',
+    angle: 120,
     page: 'doctors',
   },
   {
@@ -35,7 +38,8 @@ const NAV_ITEMS = [
     title: '提携健診施設',
     description: '全国200箇所以上の医療ネットワーク',
     icon: '🏥',
-    color: 'rgba(255, 152, 0, 0.15)',
+    color: '#E2904A',
+    angle: 180,
     page: 'facilities',
   },
   {
@@ -43,7 +47,8 @@ const NAV_ITEMS = [
     title: 'プラン・料金',
     description: '会員プランと料金体系のご案内',
     icon: '💳',
-    color: 'rgba(156, 39, 176, 0.15)',
+    color: '#9C27B0',
+    angle: 240,
     page: 'plan',
   },
   {
@@ -51,17 +56,20 @@ const NAV_ITEMS = [
     title: 'お問い合わせ',
     description: '資料請求・ご相談はこちら',
     icon: '📧',
-    color: 'rgba(244, 67, 54, 0.15)',
+    color: '#F44336',
+    angle: 300,
     page: 'contact',
   },
 ]
 
 export default function Hero({ onNavigate }: HeroProps) {
+  const [hoveredId, setHoveredId] = useState<string | null>(null)
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const animRef = useRef<number>(0)
+  const timeRef = useRef<number>(0)
 
-  // Particle animation
-  const initParticles = useCallback(() => {
+  // Enhanced particle and wave animation
+  const initAnimation = useCallback(() => {
     const canvas = canvasRef.current
     if (!canvas) return
     const ctx = canvas.getContext('2d')
@@ -73,45 +81,83 @@ export default function Hero({ onNavigate }: HeroProps) {
     let w = canvas.width = canvas.offsetWidth
     let h = canvas.height = canvas.offsetHeight
 
-    const particles: { x: number; y: number; r: number; vx: number; vy: number; o: number }[] = []
-    const count = Math.min(80, Math.floor((w * h) / 12000))
+    // Particles with blue-red color scheme
+    const particles: { x: number; y: number; r: number; vx: number; vy: number; o: number; hue: number }[] = []
+    const count = Math.min(100, Math.floor((w * h) / 10000))
     for (let i = 0; i < count; i++) {
       particles.push({
-        x: Math.random() * w, y: Math.random() * h,
-        r: Math.random() * 2.5 + 0.5,
-        vx: (Math.random() - 0.5) * 0.4,
-        vy: (Math.random() - 0.5) * 0.4,
-        o: Math.random() * 0.6 + 0.2,
+        x: Math.random() * w,
+        y: Math.random() * h,
+        r: Math.random() * 3 + 1,
+        vx: (Math.random() - 0.5) * 0.5,
+        vy: (Math.random() - 0.5) * 0.5,
+        o: Math.random() * 0.5 + 0.3,
+        hue: Math.random() * 60 + (Math.random() > 0.5 ? 200 : 340), // Blue or Red hues
       })
     }
 
     const draw = () => {
-      ctx.clearRect(0, 0, w, h)
+      timeRef.current += 0.01
+
+      // Gradient background waves
+      const gradient = ctx.createLinearGradient(0, 0, w, h)
+      gradient.addColorStop(0, `hsla(${220 + Math.sin(timeRef.current) * 20}, 70%, 30%, 0.3)`)
+      gradient.addColorStop(0.5, `hsla(${280 + Math.cos(timeRef.current * 0.7) * 30}, 60%, 25%, 0.4)`)
+      gradient.addColorStop(1, `hsla(${340 + Math.sin(timeRef.current * 0.5) * 20}, 65%, 30%, 0.3)`)
+
+      ctx.fillStyle = gradient
+      ctx.fillRect(0, 0, w, h)
+
+      // Draw wave patterns
+      ctx.save()
+      for (let wave = 0; wave < 3; wave++) {
+        ctx.beginPath()
+        const offset = timeRef.current + wave * Math.PI / 3
+        for (let x = 0; x <= w; x += 10) {
+          const y = h / 2 + Math.sin(x * 0.01 + offset) * (30 + wave * 20) + Math.cos(x * 0.005 + offset * 0.5) * 20
+          if (x === 0) ctx.moveTo(x, y)
+          else ctx.lineTo(x, y)
+        }
+        ctx.strokeStyle = `hsla(${200 + wave * 40}, 70%, 60%, ${0.1 - wave * 0.02})`
+        ctx.lineWidth = 2
+        ctx.stroke()
+      }
+      ctx.restore()
+
+      // Draw particles
       particles.forEach(p => {
         ctx.beginPath()
         ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2)
-        ctx.fillStyle = `rgba(201, 168, 76, ${p.o})`
+        ctx.fillStyle = `hsla(${p.hue}, 80%, 70%, ${p.o})`
+        ctx.shadowBlur = 10
+        ctx.shadowColor = `hsla(${p.hue}, 80%, 70%, 0.5)`
         ctx.fill()
-        p.x += p.vx; p.y += p.vy
+        ctx.shadowBlur = 0
+
+        p.x += p.vx
+        p.y += p.vy
         if (p.x < 0 || p.x > w) p.vx *= -1
         if (p.y < 0 || p.y > h) p.vy *= -1
       })
+
       // Draw connections
       for (let i = 0; i < particles.length; i++) {
         for (let j = i + 1; j < particles.length; j++) {
           const dx = particles[i].x - particles[j].x
           const dy = particles[i].y - particles[j].y
           const dist = Math.sqrt(dx * dx + dy * dy)
-          if (dist < 180) {
+          if (dist < 200) {
             ctx.beginPath()
             ctx.moveTo(particles[i].x, particles[i].y)
             ctx.lineTo(particles[j].x, particles[j].y)
-            ctx.strokeStyle = `rgba(201, 168, 76, ${0.1 * (1 - dist / 180)})`
-            ctx.lineWidth = 1
+            const avgHue = (particles[i].hue + particles[j].hue) / 2
+            ctx.strokeStyle = `hsla(${avgHue}, 80%, 70%, ${0.15 * (1 - dist / 200)})`
+            ctx.lineWidth = 1.5
             ctx.stroke()
           }
         }
       }
+
       animRef.current = requestAnimationFrame(draw)
     }
 
@@ -126,9 +172,9 @@ export default function Hero({ onNavigate }: HeroProps) {
   }, [])
 
   useEffect(() => {
-    const cleanup = initParticles()
+    const cleanup = initAnimation()
     return () => cleanup?.()
-  }, [initParticles])
+  }, [initAnimation])
 
   const handleNavClick = (item: typeof NAV_ITEMS[0]) => {
     if (item.page) {
@@ -142,7 +188,6 @@ export default function Hero({ onNavigate }: HeroProps) {
   return (
     <section className="hero" aria-label="メインビジュアル">
       <canvas ref={canvasRef} className="hero__canvas" aria-hidden="true" />
-      <div className="hero__overlay" />
       <div className="hero__content">
         <div className="hero__header">
           <h1 className="hero__title">BRBメディカルサロン</h1>
@@ -150,23 +195,64 @@ export default function Hero({ onNavigate }: HeroProps) {
           <p className="hero__tagline">あなたの健康を、最高峰の医療チームが見守ります</p>
         </div>
 
-        <nav className="hero__nav" aria-label="サイトナビゲーション">
-          <div className="hero__nav-grid">
+        <nav className="hero__nav-network" aria-label="サイトナビゲーション">
+          {/* Central Hub */}
+          <div className="hero__hub">
+            <div className="hero__hub-pulse" />
+            <div className="hero__hub-ring" />
+            <div className="hero__hub-icon">
+              <div className="medical-cross">
+                <div className="cross-v"></div>
+                <div className="cross-h"></div>
+              </div>
+            </div>
+            <div className="hero__hub-label">BRB</div>
+          </div>
+
+          {/* Connection Lines */}
+          <svg className="hero__connections" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+            {NAV_ITEMS.map((item) => {
+              const angleRad = (item.angle * Math.PI) / 180
+              const radius = 45 // percentage
+              const x2 = 50 + Math.cos(angleRad) * radius
+              const y2 = 50 + Math.sin(angleRad) * radius
+              return (
+                <line
+                  key={`line-${item.id}`}
+                  className={`hero__connection-line ${hoveredId === item.id ? 'active' : ''}`}
+                  x1="50"
+                  y1="50"
+                  x2={x2}
+                  y2={y2}
+                  style={{ '--item-color': item.color } as React.CSSProperties}
+                />
+              )
+            })}
+          </svg>
+
+          {/* Navigation Nodes */}
+          <div className="hero__nodes">
             {NAV_ITEMS.map((item, i) => (
               <button
                 key={item.id}
-                className="hero__nav-card"
+                className="hero__node"
                 onClick={() => handleNavClick(item)}
+                onMouseEnter={() => setHoveredId(item.id)}
+                onMouseLeave={() => setHoveredId(null)}
+                data-angle={item.angle}
                 style={{
-                  animationDelay: `${i * 0.1}s`,
-                  '--card-color': item.color,
+                  '--item-color': item.color,
+                  '--angle': `${item.angle}deg`,
+                  animationDelay: `${i * 0.15}s`,
                 } as React.CSSProperties}
               >
-                <div className="hero__nav-card-glow" />
-                <div className="hero__nav-card-icon">{item.icon}</div>
-                <h3 className="hero__nav-card-title">{item.title}</h3>
-                <p className="hero__nav-card-desc">{item.description}</p>
-                <div className="hero__nav-card-arrow">→</div>
+                <div className="hero__node-pulse" />
+                <div className="hero__node-glow" />
+                <div className="hero__node-icon">{item.icon}</div>
+                <div className="hero__node-content">
+                  <h3 className="hero__node-title">{item.title}</h3>
+                  <p className="hero__node-desc">{item.description}</p>
+                </div>
               </button>
             ))}
           </div>
