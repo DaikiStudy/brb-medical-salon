@@ -6,7 +6,7 @@
   justify-content: center;
   overflow: visible;
   padding: calc(var(--header-height) + var(--spacing-md)) var(--spacing-md) var(--spacing-3xl);
-  background: linear-gradient(135deg, #001a3d 0%, #1a0a20 35%, #2d0a15 70%, #1a0a20 100%);
+  background: linear-gradient(135deg, #001a3d 0%, #1a0a20 25%, #2d0a15 50%, #1a0a20 75%, #001a3d 100%);
 }
 
 /* Gradient fade at bottom */
@@ -53,7 +53,7 @@
   line-height: 1.2;
   letter-spacing: var(--ls-heading);
   margin-bottom: var(--spacing-sm);
-  background: linear-gradient(135deg, #003B7F 0%, #C41E3A 50%, #FFC72C 100%);
+  background: linear-gradient(135deg, #1E5AAF 0%, #E8405F 50%, #1E5AAF 100%);
   background-size: 200% 200%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -142,7 +142,7 @@
   align-items: center;
   justify-content: center;
   border: 2px solid rgba(0, 59, 127, 0.9);
-  box-shadow: 0 0 35px rgba(255, 199, 44, 0.5);
+  box-shadow: 0 0 35px rgba(30, 90, 175, 0.6);
 }
 
 /* BRB Logo */
@@ -159,23 +159,38 @@
   font-size: 32px;
   font-weight: var(--fw-bold);
   font-style: italic;
-  background: linear-gradient(135deg, #003B7F 0%, #C41E3A 50%, #FFC72C 100%);
+  background: linear-gradient(135deg, #1E5AAF 0%, #E8405F 50%, #1E5AAF 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   letter-spacing: 2px;
-  text-shadow:
-    0 0 20px rgba(255, 199, 44, 0.6),
-    0 2px 4px rgba(0, 0, 0, 0.3);
-  filter: drop-shadow(0 2px 8px rgba(255, 199, 44, 0.4));
+  position: relative;
+  filter: drop-shadow(0 2px 8px rgba(30, 90, 175, 0.5));
+}
+
+/* Gold X accent on BRB logo */
+.brb-logo-text::before {
+  content: '×';
+  position: absolute;
+  top: -8px;
+  right: -12px;
+  font-size: 20px;
+  color: #FFD700;
+  text-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
+  animation: xPulse 3s ease-in-out infinite;
+}
+
+@keyframes xPulse {
+  0%, 100% { opacity: 0.7; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.1); }
 }
 
 .brb-logo-underline {
   width: 90%;
   height: 3px;
-  background: linear-gradient(90deg, #003B7F 0%, #C41E3A 50%, #FFC72C 100%);
+  background: linear-gradient(90deg, #1E5AAF 0%, #E8405F 50%, #1E5AAF 100%);
   border-radius: 2px;
-  box-shadow: 0 0 10px rgba(255, 199, 44, 0.8);
+  box-shadow: 0 0 10px rgba(232, 64, 95, 0.6);
   animation: underlinePulse 2s ease-in-out infinite;
 }
 
@@ -229,16 +244,16 @@
   top: 50%;
   left: 50%;
   width: 200px;
-  background: rgba(10, 22, 40, 0.90);
+  background: rgba(10, 22, 40, 0.85);
   backdrop-filter: blur(15px);
-  border: 2px solid rgba(0, 59, 127, 0.5);
+  border: 2px solid rgba(30, 90, 175, 0.4);
   border-radius: var(--border-radius-lg);
   padding: var(--spacing-lg) var(--spacing-md);
   cursor: pointer;
   transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   animation: nodeAppear 0.6s ease-out backwards;
   z-index: 5;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
   transform:
     translate(-50%, -50%)
     translate(
@@ -248,17 +263,20 @@
 }
 
 .hero__node:hover {
+  background: rgba(20, 30, 50, 0.95);
   transform:
     translate(-50%, -50%)
     translate(
       calc(cos(var(--angle)) * min(47vw, 400px)),
       calc(sin(var(--angle)) * min(47vw, 400px))
     )
-    scale(1.05);
+    scale(1.08);
   border-color: var(--item-color);
+  border-width: 3px;
   box-shadow:
-    0 10px 40px rgba(0, 0, 0, 0.5),
-    0 0 30px var(--item-color);
+    0 15px 50px rgba(0, 0, 0, 0.7),
+    0 0 40px var(--item-color),
+    inset 0 0 20px rgba(255, 255, 255, 0.05);
   z-index: 15;
 }
 
@@ -292,7 +310,7 @@
 }
 
 .hero__node:hover .hero__node-glow {
-  opacity: 0.2;
+  opacity: 0.35;
 }
 
 .hero__node-icon {
@@ -318,23 +336,24 @@
   color: rgba(255, 255, 255, 0.95);
   margin-bottom: 4px;
   line-height: 1.4;
-  transition: color 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .hero__node:hover .hero__node-title {
-  color: var(--item-color);
+  color: #ffffff;
+  text-shadow: 0 0 15px var(--item-color);
 }
 
 .hero__node-desc {
   font-size: 12px;
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(255, 255, 255, 0.65);
   line-height: 1.5;
   margin: 0;
   transition: color 0.3s ease;
 }
 
 .hero__node:hover .hero__node-desc {
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(255, 255, 255, 0.95);
 }
 
 /* Scroll Hint */
@@ -357,8 +376,8 @@
 .hero__scroll-chevron {
   width: 24px;
   height: 24px;
-  border-right: 2px solid rgba(255, 199, 44, 0.9);
-  border-bottom: 2px solid rgba(255, 199, 44, 0.9);
+  border-right: 2px solid rgba(30, 90, 175, 0.9);
+  border-bottom: 2px solid rgba(30, 90, 175, 0.9);
   transform: rotate(45deg);
 }
 

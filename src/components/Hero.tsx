@@ -11,7 +11,7 @@ const NAV_ITEMS = [
     title: 'BRBメディカルサロンとは',
     description: '会員制医療クラブの特徴と理念',
     icon: '🏛️',
-    color: '#003B7F', // Keio Navy Blue
+    color: '#1E5AAF', // Bright Keio Blue
     angle: 0,
     scrollTo: 'about',
   },
@@ -20,7 +20,7 @@ const NAV_ITEMS = [
     title: 'サービス内容',
     description: '経営者様向けの専門医療サービス',
     icon: '💼',
-    color: '#C41E3A', // Keio Red
+    color: '#E8405F', // Bright Keio Red
     angle: 60,
     page: 'service',
   },
@@ -29,7 +29,7 @@ const NAV_ITEMS = [
     title: '顧問Dr.',
     description: '各分野の専門医師陣のご紹介',
     icon: '👨‍⚕️',
-    color: '#FFC72C', // Keio Yellow/Gold
+    color: '#2E6BBF', // Medium Keio Blue
     angle: 120,
     page: 'doctors',
   },
@@ -38,7 +38,7 @@ const NAV_ITEMS = [
     title: '提携健診施設',
     description: '全国200箇所以上の医療ネットワーク',
     icon: '🏥',
-    color: '#0055A4', // Lighter Keio Blue
+    color: '#FF5070', // Light Keio Red
     angle: 180,
     page: 'facilities',
   },
@@ -47,7 +47,7 @@ const NAV_ITEMS = [
     title: 'プラン・料金',
     description: '会員プランと料金体系のご案内',
     icon: '💳',
-    color: '#E63946', // Lighter Keio Red
+    color: '#4080D0', // Light Keio Blue
     angle: 240,
     page: 'plan',
   },
@@ -56,7 +56,7 @@ const NAV_ITEMS = [
     title: 'お問い合わせ',
     description: '資料請求・ご相談はこちら',
     icon: '📧',
-    color: '#FFD700', // Brighter Gold
+    color: '#C41E3A', // Deep Keio Red
     angle: 300,
     page: 'contact',
   },
@@ -92,19 +92,18 @@ export default function Hero({ onNavigate }: HeroProps) {
         vx: (Math.random() - 0.5) * 0.5,
         vy: (Math.random() - 0.5) * 0.5,
         o: Math.random() * 0.5 + 0.3,
-        hue: Math.random() > 0.66 ? 215 : (Math.random() > 0.5 ? 350 : 45), // Keio Blue, Red, or Gold hues
+        hue: Math.random() > 0.5 ? 215 : 350, // Keio Blue or Red hues only
       })
     }
 
     const draw = () => {
       timeRef.current += 0.01
 
-      // Keio tri-color gradient background waves
+      // Keio tri-color gradient background waves (Blue-Red-Blue)
       const gradient = ctx.createLinearGradient(0, 0, w, h)
-      // Navy Blue -> Red -> Gold gradient
-      gradient.addColorStop(0, `rgba(0, 59, 127, ${0.3 + Math.sin(timeRef.current) * 0.1})`)
-      gradient.addColorStop(0.5, `rgba(196, 30, 58, ${0.35 + Math.cos(timeRef.current * 0.7) * 0.1})`)
-      gradient.addColorStop(1, `rgba(255, 199, 44, ${0.2 + Math.sin(timeRef.current * 0.5) * 0.08})`)
+      gradient.addColorStop(0, `rgba(0, 59, 127, ${0.35 + Math.sin(timeRef.current) * 0.1})`)
+      gradient.addColorStop(0.5, `rgba(196, 30, 58, ${0.4 + Math.cos(timeRef.current * 0.7) * 0.1})`)
+      gradient.addColorStop(1, `rgba(0, 59, 127, ${0.35 + Math.sin(timeRef.current * 0.5) * 0.1})`)
 
       ctx.fillStyle = gradient
       ctx.fillRect(0, 0, w, h)
@@ -119,8 +118,8 @@ export default function Hero({ onNavigate }: HeroProps) {
           if (x === 0) ctx.moveTo(x, y)
           else ctx.lineTo(x, y)
         }
-        const waveHue = wave === 0 ? 215 : (wave === 1 ? 350 : 45) // Blue, Red, Gold
-        ctx.strokeStyle = `hsla(${waveHue}, 70%, 60%, ${0.12 - wave * 0.02})`
+        const waveHue = wave === 0 ? 215 : (wave === 1 ? 350 : 215) // Blue, Red, Blue
+        ctx.strokeStyle = `hsla(${waveHue}, 70%, 60%, ${0.15 - wave * 0.03})`
         ctx.lineWidth = 2
         ctx.stroke()
       }
