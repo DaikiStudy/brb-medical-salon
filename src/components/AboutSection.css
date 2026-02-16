@@ -3,49 +3,251 @@
 .about__desc {
   font-size: var(--fs-lg);
   color: var(--color-text-secondary);
-  max-width: 800px;
-  margin-bottom: var(--spacing-xl);
+  max-width: 900px;
+  margin: 0 auto var(--spacing-2xl);
   line-height: var(--lh-base);
+  text-align: center;
 }
+
+/* Feature Cards Grid */
 .about__grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: var(--spacing-md);
+  gap: var(--spacing-lg);
+  margin-bottom: var(--spacing-xl);
 }
-.about__card {
-  padding: var(--spacing-lg);
-  text-align: center;
+
+/* Feature Card */
+.about__feature-card {
+  position: relative;
+  background: var(--color-glass);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--color-glass-border);
+  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-2xl) var(--spacing-lg);
+  overflow: hidden;
+  transition: all var(--transition-base);
 }
-.about__icon {
-  width: 64px; height: 64px;
+
+.about__feature-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(201, 168, 76, 0.4);
+  box-shadow: 0 20px 60px rgba(201, 168, 76, 0.15);
+}
+
+/* Gradient Background */
+.about__feature-gradient {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(201, 168, 76, 0.1) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity var(--transition-base);
+  pointer-events: none;
+}
+
+.about__feature-card:hover .about__feature-gradient {
+  opacity: 1;
+}
+
+/* Number Badge */
+.about__feature-number {
+  position: absolute;
+  top: var(--spacing-md);
+  right: var(--spacing-md);
+  font-family: var(--font-family-en);
+  font-size: var(--fs-3xl);
+  font-weight: var(--fw-bold);
+  color: rgba(201, 168, 76, 0.1);
+  line-height: 1;
+}
+
+/* Icon */
+.about__feature-icon {
+  width: 80px;
+  height: 80px;
   margin: 0 auto var(--spacing-md);
-  background: linear-gradient(135deg, rgba(201,168,76,0.15), rgba(201,168,76,0.05));
-  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 28px;
+  background: linear-gradient(135deg, rgba(201, 168, 76, 0.15), rgba(201, 168, 76, 0.05));
+  border-radius: 50%;
+  border: 2px solid rgba(201, 168, 76, 0.2);
+  transition: all var(--transition-base);
 }
-.about__card-title {
+
+.about__feature-icon svg {
+  width: 48px;
+  height: 48px;
+}
+
+.about__feature-card:hover .about__feature-icon {
+  transform: scale(1.1) rotate(5deg);
+  border-color: var(--color-accent-gold);
+  box-shadow: 0 0 30px rgba(201, 168, 76, 0.3);
+}
+
+/* Statistics */
+.about__feature-stat {
+  text-align: center;
+  margin-bottom: var(--spacing-md);
+}
+
+.about__feature-stat-number {
+  display: block;
+  font-family: var(--font-family-en);
+  font-size: var(--fs-3xl);
+  font-weight: var(--fw-bold);
+  background: linear-gradient(135deg, var(--color-accent-gold), var(--color-accent-gold-light));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1.2;
+}
+
+.about__feature-stat-label {
+  display: block;
+  font-size: var(--fs-sm);
+  color: var(--color-text-muted);
+  margin-top: 4px;
+  font-weight: var(--fw-medium);
+}
+
+/* Title & Subtitle */
+.about__feature-title {
   font-size: var(--fs-xl);
   font-weight: var(--fw-bold);
-  margin-bottom: var(--spacing-xs);
   color: var(--color-text-primary);
+  margin-bottom: var(--spacing-xs);
+  text-align: center;
+  line-height: 1.4;
 }
-.about__card-text {
+
+.about__feature-subtitle {
+  font-family: var(--font-family-en);
+  font-size: var(--fs-sm);
+  color: var(--color-accent-gold);
+  text-align: center;
+  margin-bottom: var(--spacing-md);
+  font-weight: var(--fw-semibold);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.about__feature-description {
   font-size: var(--fs-base);
   color: var(--color-text-secondary);
+  text-align: center;
+  margin-bottom: var(--spacing-md);
+  line-height: 1.6;
+  padding-bottom: var(--spacing-md);
+  border-bottom: 1px solid var(--color-glass-border);
 }
+
+/* Feature List */
+.about__feature-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.about__feature-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-xs);
+  font-size: var(--fs-sm);
+  color: var(--color-text-secondary);
+  margin-bottom: var(--spacing-xs);
+  line-height: 1.8;
+}
+
+.about__feature-item:last-child {
+  margin-bottom: 0;
+}
+
+.about__feature-check {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  background: linear-gradient(135deg, rgba(201, 168, 76, 0.2), rgba(201, 168, 76, 0.1));
+  border-radius: 50%;
+  color: var(--color-accent-gold);
+  font-size: 12px;
+  line-height: 20px;
+  text-align: center;
+  font-weight: var(--fw-bold);
+}
+
+/* Responsive */
 @media (max-width: 1024px) {
-  .about__desc { max-width: 100%; font-size: var(--fs-base); }
+  .about__desc {
+    max-width: 100%;
+    font-size: var(--fs-base);
+    margin-bottom: var(--spacing-xl);
+  }
+  .about__grid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-md);
+  }
+  .about__feature-card {
+    padding: var(--spacing-xl) var(--spacing-lg);
+  }
+  .about__feature-icon {
+    width: 70px;
+    height: 70px;
+  }
+  .about__feature-icon svg {
+    width: 42px;
+    height: 42px;
+  }
+  .about__feature-stat-number {
+    font-size: var(--fs-2xl);
+  }
 }
+
 @media (max-width: 768px) {
-  .about__grid { grid-template-columns: 1fr; gap: var(--spacing-sm); }
-  .about__desc { font-size: var(--fs-base); }
-  .about__card { padding: var(--spacing-md); }
-  .about__card-title { font-size: var(--fs-lg); }
-  .about__card-text { font-size: var(--fs-sm); }
+  .about__desc {
+    font-size: var(--fs-sm);
+    line-height: 1.9;
+  }
+  .about__feature-card {
+    padding: var(--spacing-lg) var(--spacing-md);
+  }
+  .about__feature-number {
+    font-size: var(--fs-2xl);
+    top: var(--spacing-sm);
+    right: var(--spacing-sm);
+  }
+  .about__feature-icon {
+    width: 60px;
+    height: 60px;
+  }
+  .about__feature-icon svg {
+    width: 36px;
+    height: 36px;
+  }
+  .about__feature-stat-number {
+    font-size: var(--fs-xl);
+  }
+  .about__feature-title {
+    font-size: var(--fs-lg);
+  }
+  .about__feature-subtitle {
+    font-size: 11px;
+  }
+  .about__feature-description {
+    font-size: var(--fs-sm);
+  }
+  .about__feature-item {
+    font-size: 13px;
+  }
 }
+
 @media (max-width: 480px) {
-  .about__card { padding: var(--spacing-sm); }
+  .about__feature-card {
+    padding: var(--spacing-md) var(--spacing-sm);
+  }
 }
