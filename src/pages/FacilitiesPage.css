@@ -1,0 +1,57 @@
+.facilities-page {
+  padding-top: calc(var(--header-height) + var(--spacing-lg));
+  min-height: 100vh;
+}
+.facilities-page__inner { max-width: var(--max-width); margin: 0 auto; padding: 0 var(--spacing-md); }
+.facilities-page__breadcrumb { font-size: var(--fs-sm); color: var(--color-text-muted); margin-bottom: var(--spacing-lg); }
+.facilities-page__breadcrumb-link { color: var(--color-accent-gold); cursor: pointer; background: none; border: none; font: inherit; }
+.facilities-page__list { display: flex; flex-direction: column; gap: var(--spacing-lg); margin-bottom: var(--spacing-xl); }
+.facilities-page__card { padding: var(--spacing-xl); }
+.facilities-page__name { font-size: var(--fs-2xl); font-weight: var(--fw-bold); margin-bottom: var(--spacing-xs); }
+.facilities-page__location {
+  display: inline-block; padding: 4px 14px; margin-bottom: 4px;
+  background: rgba(201, 168, 76, 0.12); color: var(--color-accent-gold);
+  border-radius: var(--border-radius-full); font-size: var(--fs-sm); font-weight: var(--fw-semibold);
+}
+.facilities-page__access {
+  font-size: var(--fs-sm);
+  color: var(--color-text-muted);
+  margin-bottom: var(--spacing-sm);
+}
+.facilities-page__tags { display: flex; flex-wrap: wrap; gap: var(--spacing-xs); margin-bottom: var(--spacing-md); }
+.facilities-page__tag {
+  padding: 3px 10px;
+  background: rgba(30, 58, 95, 0.5); color: var(--color-text-secondary);
+  border-radius: var(--border-radius-full); font-size: 13px;
+}
+.facilities-page__desc {
+  font-size: var(--fs-lg);
+  color: var(--color-text-secondary);
+  line-height: var(--lh-base);
+  margin-bottom: var(--spacing-md);
+}
+.facilities-page__external {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  font-size: var(--fs-sm);
+  min-height: 48px;
+}
+.facilities-page__cta { text-align: center; padding-bottom: var(--spacing-2xl); }
+@media (max-width: 1024px) {
+  .facilities-page__card { padding: var(--spacing-lg); }
+  .facilities-page__name { font-size: var(--fs-xl); }
+  .facilities-page__desc { font-size: var(--fs-base); }
+  .facilities-page__tag { font-size: 12px; }
+}
+@media (max-width: 768px) {
+  .facilities-page__card { padding: var(--spacing-md); }
+  .facilities-page__name { font-size: var(--fs-lg); }
+  .facilities-page__desc { font-size: var(--fs-sm); line-height: 1.9; }
+  .facilities-page__list { gap: var(--spacing-md); }
+  .facilities-page__tags { gap: 6px; }
+  .facilities-page__access { font-size: 13px; }
+}
+@media (max-width: 480px) {
+  .facilities-page__card { padding: var(--spacing-sm); }
+}

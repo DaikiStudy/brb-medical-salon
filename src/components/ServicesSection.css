@@ -1,0 +1,78 @@
+.services { background: var(--color-bg-secondary); }
+.services__inner { max-width: var(--max-width); margin: 0 auto; padding: 0 var(--spacing-md); }
+.services__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-xl);
+}
+.services__card {
+  padding: var(--spacing-lg);
+  display: flex;
+  gap: var(--spacing-md);
+  align-items: flex-start;
+  cursor: pointer;
+  transition: all var(--transition-base);
+  position: relative;
+  overflow: hidden;
+}
+.services__card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 3px; height: 100%;
+  background: var(--color-accent-gold);
+  opacity: 0;
+  transition: opacity var(--transition-base);
+}
+.services__card:hover::before { opacity: 1; }
+.services__card:hover {
+  border-color: rgba(201, 168, 76, 0.3);
+}
+.services__num {
+  font-family: var(--font-family-en);
+  font-size: var(--fs-2xl);
+  font-weight: var(--fw-bold);
+  color: var(--color-accent-gold);
+  line-height: 1;
+  min-width: 48px;
+  opacity: 0.6;
+}
+.services__card-body { flex: 1; }
+.services__card-title {
+  font-size: var(--fs-xl);
+  font-weight: var(--fw-bold);
+  margin-bottom: var(--spacing-xs);
+  color: var(--color-text-primary);
+}
+.services__card-desc {
+  font-size: var(--fs-base);
+  color: var(--color-text-secondary);
+  line-height: var(--lh-base);
+}
+.services__arrow {
+  color: var(--color-accent-gold);
+  font-size: var(--fs-xl);
+  opacity: 0;
+  transition: opacity var(--transition-base), transform var(--transition-base);
+  align-self: center;
+}
+.services__card:hover .services__arrow {
+  opacity: 1;
+  transform: translateX(4px);
+}
+.services__cta { text-align: center; }
+@media (max-width: 1024px) {
+  .services__card { padding: var(--spacing-md); gap: var(--spacing-sm); }
+  .services__card-title { font-size: var(--fs-lg); }
+  .services__card-desc { font-size: var(--fs-sm); }
+  .services__num { font-size: var(--fs-xl); min-width: 36px; }
+}
+@media (max-width: 768px) {
+  .services__grid { grid-template-columns: 1fr; gap: var(--spacing-sm); }
+  .services__card { padding: var(--spacing-sm) var(--spacing-md); }
+  .services__card-title { font-size: var(--fs-base); margin-bottom: 4px; }
+  .services__card-desc { font-size: var(--fs-sm); line-height: 1.8; }
+  .services__num { font-size: var(--fs-xl); min-width: 32px; }
+  .services__arrow { display: none; }
+}

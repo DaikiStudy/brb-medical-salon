@@ -1,0 +1,80 @@
+.facilities { background: var(--color-bg-secondary); }
+.facilities__inner { max-width: var(--max-width); margin: 0 auto; padding: 0 var(--spacing-md); }
+.facilities__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-xl);
+}
+.facilities__card { padding: var(--spacing-lg); }
+.facilities__card-name {
+  font-size: var(--fs-xl);
+  font-weight: var(--fw-bold);
+  margin-bottom: var(--spacing-xs);
+}
+.facilities__card-location {
+  display: inline-block;
+  padding: 3px 12px;
+  background: rgba(201, 168, 76, 0.12);
+  color: var(--color-accent-gold);
+  border-radius: var(--border-radius-full);
+  font-size: var(--fs-sm);
+  margin-bottom: var(--spacing-sm);
+}
+.facilities__card-desc {
+  font-size: var(--fs-base);
+  color: var(--color-text-secondary);
+  margin-bottom: var(--spacing-md);
+  line-height: var(--lh-base);
+}
+.facilities__card-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  flex-wrap: wrap;
+}
+.facilities__card-link {
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-semibold);
+  color: var(--color-accent-gold);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  padding: 0;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+}
+.facilities__card-link:hover { opacity: 0.8; }
+.facilities__card-external {
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-semibold);
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  padding: 6px 16px;
+  border: 1px solid var(--color-glass-border);
+  border-radius: var(--border-radius-sm);
+  transition: all var(--transition-fast);
+}
+.facilities__card-external:hover {
+  color: var(--color-accent-gold);
+  border-color: var(--color-accent-gold);
+  background: rgba(201, 168, 76, 0.08);
+}
+.facilities__cta { text-align: center; }
+@media (max-width: 1024px) {
+  .facilities__grid { grid-template-columns: repeat(2, 1fr); }
+  .facilities__card { padding: var(--spacing-md); }
+  .facilities__card-name { font-size: var(--fs-lg); }
+  .facilities__card-desc { font-size: var(--fs-sm); }
+}
+@media (max-width: 768px) {
+  .facilities__grid { grid-template-columns: 1fr; }
+  .facilities__card { padding: var(--spacing-md); }
+  .facilities__card-name { font-size: var(--fs-lg); }
+  .facilities__card-desc { font-size: var(--fs-sm); line-height: 1.9; }
+}

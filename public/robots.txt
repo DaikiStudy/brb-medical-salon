@@ -1,0 +1,11 @@
+# BRB Medical Salon - robots.txt
+# Allow all crawlers to index the site
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://brb-medical-salon.netlify.app/sitemap.xml
+
+# Crawl-delay (optional, 1 second between requests)
+Crawl-delay: 1

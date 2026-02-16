@@ -1,0 +1,61 @@
+.service-page {
+  padding-top: calc(var(--header-height) + var(--spacing-lg));
+  min-height: 100vh;
+}
+.service-page__inner { max-width: var(--max-width); margin: 0 auto; padding: 0 var(--spacing-md); }
+.service-page__breadcrumb {
+  font-size: var(--fs-sm);
+  color: var(--color-text-muted);
+  margin-bottom: var(--spacing-lg);
+}
+.service-page__breadcrumb-link {
+  color: var(--color-accent-gold);
+  cursor: pointer;
+  background: none; border: none; font: inherit;
+}
+.service-page__list { display: flex; flex-direction: column; gap: var(--spacing-lg); margin-bottom: var(--spacing-xl); }
+.service-page__item {
+  display: flex;
+  gap: var(--spacing-lg);
+  padding: var(--spacing-lg);
+  align-items: flex-start;
+}
+.service-page__item:nth-child(even) { flex-direction: row-reverse; }
+.service-page__num {
+  font-family: var(--font-family-en);
+  font-size: var(--fs-5xl, 56px);
+  font-weight: var(--fw-bold);
+  color: var(--color-accent-gold);
+  opacity: 0.3;
+  line-height: 1;
+  min-width: 80px;
+}
+.service-page__body { flex: 1; }
+.service-page__title {
+  font-size: var(--fs-2xl);
+  font-weight: var(--fw-bold);
+  margin-bottom: var(--spacing-sm);
+}
+.service-page__desc {
+  font-size: var(--fs-lg);
+  color: var(--color-text-secondary);
+  line-height: var(--lh-base);
+}
+.service-page__cta { text-align: center; padding-bottom: var(--spacing-2xl); }
+@media (max-width: 1024px) {
+  .service-page__item { padding: var(--spacing-md); gap: var(--spacing-md); }
+  .service-page__num { font-size: var(--fs-3xl); min-width: 60px; }
+  .service-page__title { font-size: var(--fs-xl); }
+  .service-page__desc { font-size: var(--fs-base); }
+}
+@media (max-width: 768px) {
+  .service-page__item,
+  .service-page__item:nth-child(even) { flex-direction: column; padding: var(--spacing-md); }
+  .service-page__num { font-size: var(--fs-2xl); min-width: auto; opacity: 0.4; }
+  .service-page__title { font-size: var(--fs-lg); margin-bottom: var(--spacing-xs); }
+  .service-page__desc { font-size: var(--fs-sm); line-height: 1.9; }
+  .service-page__list { gap: var(--spacing-md); }
+}
+@media (max-width: 480px) {
+  .service-page__item { padding: var(--spacing-sm); }
+}
